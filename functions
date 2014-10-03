@@ -1,0 +1,5 @@
+#!/bin/bash
+
+fixcsv () {  tr '\r' '\n' < $1 >| $2; }
+
+export -f fixcsv

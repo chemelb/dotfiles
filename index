@@ -1,0 +1,15 @@
+export DOTFILESDIR="$HOME/dotfiles"
+
+cd $DOTFILESDIR
+. bashrc
+. functions
+. functions-git
+. aliases
+. prompt1
+. prompt2
+
+if [ ! -f "$HOME/.vimrc" ]; then
+  ln -s $DOTFILESDIR/vimrc $HOME/.vimrc
+fi
+
+cd - > /dev/null
