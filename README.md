@@ -3,4 +3,5 @@ dotfiles
 
 My minimalistic dotfiles.
 
-Just link whichever you want to your home dir, but don't forget to prepend them with a dot!
+Just source the index file and let it do the rest.
+It will try to create a symlink from ~/.vimrc to vimrc if it doesn't exist.
