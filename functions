@@ -1,5 +1,15 @@
 #!/bin/bash
 
-fixcsv () {  tr '\r' '\n' < $1 >| $2; }
+function fixcsv() {
+    tr '\r' '\n' < $1 >| $2;
+}
 
-export -f fixcsv
+function leap-up() {
+    (sleep 1 && open /Applications/Leap\ Motion.app)&
+    /Applications/Leap\ Motion.app/Contents/MacOS/leapd
+}
+
+function leap-down() {
+    killall leapd
+    killall Leap\ Motion
+}

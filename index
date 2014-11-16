@@ -1,15 +1,9 @@
-export DOTFILESDIR="$HOME/dotfiles"
+DFD="$HOME/dotfiles"
 
-cd $DOTFILESDIR
-. bashrc
-. functions
-. functions-git
-. aliases
-. prompt1
-. prompt2
-
-if [ ! -f "$HOME/.vimrc" ]; then
-  ln -s $DOTFILESDIR/vimrc $HOME/.vimrc
-fi
-
-cd - > /dev/null
+. $DFD/profile
+. $DFD/bashrc
+. $DFD/functions
+. $DFD/functions-git
+. $DFD/aliases
+. $DFD/prompt1
+. $DFD/prompt2

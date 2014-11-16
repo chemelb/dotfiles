@@ -32,5 +32,5 @@ alias m="cdb; mvn -Dmaven.test.skip=true install"
 alias mc="cdb; mvn -Dmaven.test.skip=true clean install"
 
 # tomcat deploy
-alias t="curl -v -T $BACKEND_DIR/target/LC7G.war \"http://deploy:deploy@vagrant.box:8080/manager/text/deploy?path=&war=LC7G.war&update=true\""
-alias tl="curl -v -T $BACKEND_DIR/target/LC7G.war \"http://deploy:deploy@localhost:8080/manager/text/deploy?path=&war=LC7G.war&update=true\""
+alias t="curl -v -T $BACKEND_DIR/target/ROOT.war \"http://deploy:deploy@vagrant.box:8080/manager/text/deploy?path=&war=ROOT.war&update=true\""
+alias tl="curl -v -T $BACKEND_DIR/target/ROOT.war \"http://deploy:deploy@localhost:8080/manager/text/deploy?path=&war=ROOT.war&update=true\""
