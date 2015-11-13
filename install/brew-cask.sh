@@ -16,6 +16,7 @@ apps=(
     firefox-nightly
     flux
     # glimmerblocker
+    github-desktop
     google-chrome
     google-chrome-canary
     google-drive
