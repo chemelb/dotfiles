@@ -1,9 +1,0 @@
-DFD="$HOME/dotfiles"
-
-. $DFD/profile
-. $DFD/bashrc
-. $DFD/functions
-. $DFD/functions-git
-. $DFD/aliases
-. $DFD/prompt1
-. $DFD/prompt2

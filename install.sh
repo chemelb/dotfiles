@@ -1,15 +1,44 @@
-#/bin/sh
-DFD="$HOME/dotfiles"
+#!/usr/bin/env bash
 
-# make sure we get loaded
-line="\n\n# source dotfiles at the end\nexport DFD=\$HOME/dotfiles\n. \$DFD/index"
-file=~/.bash_profile
-if ! grep ". \$DFD/index" $file; then
-	echo $line >> ~/.bash_profile
+# Get current dir (so run this script from anywhere)
+
+export DOTFILES_DIR EXTRA_DIR COMPUTER_NAME
+DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+EXTRA_DIR="$HOME/.extra"
+read -p "What is the name you give to your computer? [MoToolz]" COMPUTER_NAME
+
+# Update dotfiles itself first
+
+[ -d "$DOTFILES_DIR/.git" ] && git --work-tree="$DOTFILES_DIR" --git-dir="$DOTFILES_DIR/.git" pull origin master
+
+# Bunch of symlinks
+
+ln -sfv "$DOTFILES_DIR/runcom/.bash_profile" ~
+ln -sfv "$DOTFILES_DIR/runcom/.inputrc" ~
+ln -sfv "$DOTFILES_DIR/runcom/.gemrc" ~
+ln -sfv "$DOTFILES_DIR/git/.gitconfig" ~
+ln -sfv "$DOTFILES_DIR/git/.gitignore_global" ~
+
+# Package managers & packages
+
+. "$DOTFILES_DIR/install/brew.sh"
+. "$DOTFILES_DIR/install/bash.sh"
+. "$DOTFILES_DIR/install/zsh.sh"
+. "$DOTFILES_DIR/install/node.sh"
+. "$DOTFILES_DIR/install/atom.sh"
+
+if [ "$(uname)" == "Darwin" ]; then
+    . "$DOTFILES_DIR/install/brew-cask.sh"
+    . "$DOTFILES_DIR/install/ruby.sh"
+    ln -sfv "$DOTFILES_DIR/etc/mackup/.mackup.cfg" ~
 fi
-exit
-# backup if needed, and start using our vimrc
-if [ -f "$HOME/.vimrc" ]; then
-  mv -s $HOME/vimrc $HOME/.vimrc.bak
+
+# Run tests
+
+bats test/*.bats
+
+# Install extra stuff
+
+if [ -d "$EXTRA_DIR" -a -f "$EXTRA_DIR/install.sh" ]; then
+    . "$EXTRA_DIR/install.sh"
 fi
-ln -s $DFD/vimrc $HOME/.vimrc

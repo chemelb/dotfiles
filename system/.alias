@@ -1,0 +1,122 @@
+# Shortcuts
+
+alias _="sudo"
+
+# aliases to manage aliases, env, and reload these
+
+alias bp="vi ~/.bash_profile"
+alias rbp=". ~/.bash_profile"
+alias e="vi ~/.env"
+alias re=". ~/.env"
+alias a="vi ~/.alias"
+alias ra=". ~/.alias"
+
+# edit hosts file
+
+alias vih="sudo $EDITOR /etc/hosts"
+
+# grep in history
+
+alias hig="cat ~/.zsh_history | grep"
+
+# smart tailing
+
+alias tf="tail -f -n300"
+alias tfs="tail -f -n400 /var/log/system.log"
+
+# git stuff
+
+alias g="git"
+alias "g?"="git status"
+alias "g+"="git add"
+alias "g-"="git rm"
+alias "g!"="git commit -am"
+alias "g%"="git sync"
+alias gp="git pull"
+alias gps="git push"
+if $(is-supported "alias -g"); then
+    alias -g G="| grep -i"
+    alias -g H="| head"
+    alias -g T="| tail"
+    alias -g L="| less"
+fi
+is-executable hub && eval "$(hub alias -s)" # alias git=hub
+
+# random stuff
+alias vi="vim"
+alias rr="rm -rf"
+alias json="json -c"
+
+# List declared aliases, functions
+
+alias listaliases="alias | sed 's/=.*//'"
+alias listfunctions="declare -f | grep '^[a-z].* ()' | sed 's/{$//'" # show non _prefixed functions
+
+# ls
+
+LS_COLORS=`is-supported "ls --color" --color -G`
+LS_TIMESTYLEISO=`is-supported "ls --time-style=long-iso" --time-style=long-iso`
+LS_GROUPDIRSFIRST=`is-supported "ls --group-directories-first" --group-directories-first`
+
+alias l="ls -lahA $LS_COLORS $LS_TIMESTYLEISO $LS_GROUPDIRSFIRST"
+alias ll="ls -lA $LS_COLORS"
+alias lt="ls -lhAtr $LS_COLORS $LS_TIMESTYLEISO $LS_GROUPDIRSFIRST"
+alias ld="ls -ld $LS_COLORS */"
+
+unset LS_COLORS LS_TIMESTYLEISO LS_GROUPDIRSFIRST
+
+# cd
+
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias -- -="cd -"                  # Go to previous dir with -
+alias cd.='cd $(readlink -f .)'    # Go to real dir (i.e. if current dir is linked)
+
+# tree
+
+alias tree="tree -A"
+alias treed="tree -d"
+alias tree1="tree -d -L 1"
+alias tree2="tree -d -L 2"
+
+# rsync
+
+alias rsync="rsync -vh"
+
+# npm
+
+alias ni="npm install"
+alias nun="npm uninstall"
+alias nup="npm update"
+alias nr="npm reload"
+
+# vagrant
+
+alias v="vagrant status"
+alias vu="vagrant up"
+alias vs="vagrant ssh"
+alias vh="vagrant halt"
+alias vd="vagrant destroy"
+
+# Network
+
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias ipl="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
+
+# Request using GET, POST, etc. method
+
+for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
+    alias "$method"="lwp-request -m '$method'"
+done
+
+# Recursively remove Apple meta files
+
+alias cleanupds="find . -type f -name '*.DS_Store' -ls -exec /bin/rm {} \;"
+alias cleanupad="find . -type d -name '.AppleD*' -ls -exec /bin/rm -r {} \;"
+
+# Miscellaneous
+
+alias quit="exit"
+alias week="date +%V"
+alias speedtest="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip"
