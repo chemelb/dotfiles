@@ -23,7 +23,7 @@ It targets OS X systems, but since it has some defensive checks it should work o
     * Alfred (I have workflows for the paid version listed [here](https://www.dropbox.com/home/Public/Mac%20OSX/Alfred%20Workflows))
     * Atom (will install the [listed packages](install/atom-packages.txt))
     * ... and many others, see [list here](install/brew-cask.sh)
-* Aliases: please try `listaliases` after install to see all the aliases, or just type `a` to open the shared system/.alias file and see what they all point to ;)
+* Aliases: please try `listaliases` after install to see all the aliases, or just enter `_a` to open the shared system/.alias file and see what they all point to ;)
 
 ## Install
 
