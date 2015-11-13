@@ -71,7 +71,7 @@ In the `runcom/` folder you can find files that were symlinked into $HOME, and w
 
 Alternatively, you can have an additional, personal dotfiles repo at `~/.extra`.
 
-* The runcom `.bash_profile` sources all `~/.extra/runcom/*.sh` files.
+* `~/.bash_profile` or `~/.zshrc` will load `runcom/.common`, which sources all `~/.extra/runcom/*.sh` files.
 * The installer (`install.sh`) will run `~/.extra/install.sh`.
 
 ## Additional resources
