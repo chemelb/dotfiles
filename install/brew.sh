@@ -24,7 +24,6 @@ apps=(
     ffmpeg
     fasd
     gifsicle
-    git
     #gitsh
     git-extras
     git-flow

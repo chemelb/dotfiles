@@ -86,3 +86,5 @@ LUNCHY_DIR=$(dirname `gem which lunchy`)/../extras
 if [ -f $LUNCHY_DIR/lunchy-completion.zsh ]; then
     . $LUNCHY_DIR/lunchy-completion.zsh
 fi
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

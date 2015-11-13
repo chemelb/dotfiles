@@ -13,6 +13,7 @@ sub_help () {
     echo "   test               Run tests"
     echo "   update             Update packages and pkg managers (OS, brew, gem, pip)"
     echo "   osx                Apply OS X system defaults"
+    echo "   solarized          Add Solarized schemes to OSX"
     echo "   dock               Apply OS X Dock settings"
     echo "   install mjolnir    Install Mjolnir (Homebrew/Luarocks)"
 }
@@ -41,6 +42,12 @@ sub_osx () {
         echo "Applying $DEFAULTS_FILE" && . "$DEFAULTS_FILE"
     done
     echo "Done. Some changes may require a logout/restart to take effect."
+}
+
+sub_solarized () {
+    # install color schemes
+    open $DOTFILES_DIR/install/schemes/SolarizedDark.terminal
+    open $DOTFILES_DIR/install/schemes/SolarizedLight.terminal
 }
 
 sub_dock () {

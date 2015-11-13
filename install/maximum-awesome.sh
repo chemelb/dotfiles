@@ -1,7 +1,8 @@
-DOTFILES_DIR=$DOTFILES_DIR/maximimum-awesome
+INSTALL_DIR=$DOTFILES_DIR/maximimum-awesome
 
 # Install/update
-(mkdir -p "$DOTFILES_DIR" && git clone https://github.com/square/maximum-awesome.git "$DOTFILES_DIR" && cd "$DOTFILES_DIR") || (cd "$DOTFILES_DIR" && git pull)
+mkdir -p "$INSTALL_DIR" && git clone https://github.com/square/maximum-awesome.git "$INSTALL_DIR"
+cd "$INSTALL_DIR" && git pull
 
 # Build
 rake

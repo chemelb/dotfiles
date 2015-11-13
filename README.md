@@ -31,6 +31,8 @@ On a sparkling fresh installation of OS X:
 
     sudo softwareupdate -i -a
     xcode-select --install
+    # make sure to change owner of /usr/local to yourself if you hadn't
+    sudo chown -R $USER /usr/local
 
 Install the dotfiles with either Git or curl:
 
