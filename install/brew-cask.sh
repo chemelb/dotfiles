@@ -1,8 +1,6 @@
 # Install Caskroom
 
-brew tap caskroom/cask
 brew install brew-cask
-brew tap caskroom/versions
 
 exp="HOMEBREW_CASK_OPTS='--appdir=/Applications'"
 export exp
@@ -26,9 +24,11 @@ apps=(
     opera
     screenflow
     shortcat
+    slack
     sourcetree
     spotify
     transmit
+    vagrant
     virtualbox
     vlc
     webstorm

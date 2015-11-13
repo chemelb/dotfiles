@@ -23,6 +23,7 @@ It targets OS X systems, but since it has some defensive checks it should work o
     * Alfred (I have workflows for the paid version listed [here](https://www.dropbox.com/home/Public/Mac%20OSX/Alfred%20Workflows))
     * Atom (will install the [listed packages](install/atom-packages.txt))
     * ... and many others, see [list here](install/brew-cask.sh)
+* Aliases: please try `listaliases` after install to see all the aliases, or just type `a` to open the shared system/.alias file and see what they all point to ;)
 
 ## Install
 
@@ -56,7 +57,6 @@ Or, using wget:
     Commands:
        help               This help message
        edit               Open dotfiles in default editor (subl) and Git GUI (stree)
-       reload             Reload dotfiles
        test               Run tests
        update             Update packages and pkg managers: OS X Applications, Homebrew/Cask, npm, Ruby, and pip
        osx                Apply OS X system defaults
@@ -65,7 +65,9 @@ Or, using wget:
 
 ## Customize/extend
 
-You can put your custom settings, such as Git credentials in the `system/.custom` file which will be sourced from `.bash_profile` automatically. This file is in `.gitignore`.
+You can put your custom settings, such as Git credentials in the `system/.custom` file which will be sourced via `.bash_profile` or `.zshrc` automatically. This file is in `.gitignore`. Please provide custom git creds, or override mine in git/.gitconfig.
+
+In the `runcom/` folder you can find files that were symlinked into $HOME, and which may also be edited. Depending on your preference for bash vs zsh, you can edit `.bash_profile` or `.zshrc`. Shared stuff should go into `runcom/.common`.
 
 Alternatively, you can have an additional, personal dotfiles repo at `~/.extra`.
 

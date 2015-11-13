@@ -1,60 +1,37 @@
-# If not running interactively, don't do anything
-
-[ -z "$PS1" ] && return
-
-# OS
-
-if [ "$(uname -s)" = "Darwin" ]; then
-    OS="OSX"
-else
-    OS=$(uname -s)
-fi
-
-# Resolve DOTFILES_DIR (assuming ~/.dotfiles on distros without readlink and/or $BASH_SOURCE/$0)
-
-READLINK=$(which greadlink || which readlink)
-CURRENT_SCRIPT=$BASH_SOURCE
-
-if [[ -n $CURRENT_SCRIPT && -x "$READLINK" ]]; then
-    SCRIPT_PATH=$($READLINK -f "$CURRENT_SCRIPT")
-    DOTFILES_DIR=$(dirname "$(dirname "$SCRIPT_PATH")")
-elif [ -d "$HOME/.dotfiles" ]; then
-    DOTFILES_DIR="$HOME/.dotfiles"
-else
-    echo "Unable to find dotfiles, exiting."
-    return # `exit 1` would quit the shell itself
-fi
-
-# Finally we can source the dotfiles (order matters)
-
-for DOTFILE in "$DOTFILES_DIR"/system/.{function,function_*,path,env,alias,completion,grep,prompt,nvm,rvm,custom}; do
-    [ -f "$DOTFILE" ] && . "$DOTFILE"
-done
-
-if [ "$OS" = "OSX" ]; then
-    for DOTFILE in "$DOTFILES_DIR"/system/.{env,alias,function}.osx; do
-        [ -f "$DOTFILE" ] && . "$DOTFILE"
-    done
-fi
+source $DOTFILES_DIR/runcom/.common.sh
 
 # Set LSCOLORS
 
 eval "$(dircolors "$DOTFILES_DIR"/system/.dir_colors)"
 
-# Hook for extra/custom stuff
+# Case-insensitive globbing (used in pathname expansion)
 
-EXTRA_DIR="$HOME/.extra"
+shopt -s nocaseglob
 
-if [ -d "$EXTRA_DIR" ]; then
-    for EXTRAFILE in "$EXTRA_DIR"/runcom/*.sh; do
-        [ -f "$EXTRAFILE" ] && . "$EXTRAFILE"
-    done
+# Recursive globbing with "**"
+
+if [ ${BASH_VERSINFO[0]} -ge 4 ]; then
+    shopt -s globstar
 fi
 
-# Clean up
+# Append to the Bash history file, rather than overwriting it
 
-unset READLINK CURRENT_SCRIPT SCRIPT_PATH DOTFILE
+shopt -s histappend
 
-# Export
+# Autocorrect typos in path names when using `cd`
 
-export OS DOTFILES_DIR EXTRA_DIR
+shopt -s cdspell
+
+# Do not autocomplete when accidentally pressing Tab on an empty line.
+
+shopt -s no_empty_cmd_completion
+
+# Check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+
+shopt -s checkwinsize
+
+LUNCHY_DIR=$(dirname `gem which lunchy`)/../extras
+if [ -f $LUNCHY_DIR/lunchy-completion.bash ]; then
+    . $LUNCHY_DIR/lunchy-completion.bash
+fi

@@ -1,9 +1,17 @@
 # Install Homebrew
 
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+brew untap homebrew/versions
+brew untap homebrew/dupes
+brew untap caskroom/cask
+# cleanup
+brew update
+brew cleanup --force -s && rm -rf "$(brew --cache)"
+# tap fresh
 brew tap homebrew/versions
 brew tap homebrew/dupes
-brew update
+brew tap caskroom/cask
+
 brew upgrade
 
 # Install packages
@@ -22,6 +30,7 @@ apps=(
     git-flow
     gnu-sed --with-default-names
     grep --with-default-names
+    heroku-toolbelt
     hub
     httpie
     imagemagick
@@ -33,11 +42,9 @@ apps=(
     psgrep
     python
     shellcheck
-    slack
     ssh-copy-id
     #svn
     tree
-    vagrant
     vim
     wget
 )

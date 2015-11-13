@@ -1,2 +1,0 @@
-# include bash aliases first, as they are compatible
-source $ZSH/.alias

@@ -1,10 +1,11 @@
-BUNDLE_DIR=$BUNDLE_DIR/maximimum-awesome
+DOTFILES_DIR=$DOTFILES_DIR/maximimum-awesome
 
 # Install/update
-(mkdir -p "$BUNDLE_DIR" && git clone https://github.com/square/maximum-awesome.git "$BUNDLE_DIR" && cd "$BUNDLE_DIR") || (cd "$BUNDLE_DIR" && git pull)
+(mkdir -p "$DOTFILES_DIR" && git clone https://github.com/square/maximum-awesome.git "$DOTFILES_DIR" && cd "$DOTFILES_DIR") || (cd "$DOTFILES_DIR" && git pull)
 
 # Build
 rake
 
-# use system/.vimrc.local
-ln -sf $BUNDLE_DIR/system/.vimrc.local ~/.vimrc.local
+# use vim/.vimrc.local
+ln -sf "$DOTFILES_DIR/vim/.vimrc.local" ~/.vimrc.local
+ln -sf "$DOTFILES_DIR/vim/.vimrc.bundle.local" ~/.vimrc.bundle.local

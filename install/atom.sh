@@ -1,2 +1,1 @@
-brew install atom
-apm install --packages-file atom-packages.txt
+apm install --packages-file $DOTFILES_DIR/install/atom-packages.txt
